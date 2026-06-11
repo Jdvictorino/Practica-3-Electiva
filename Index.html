@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Juan Victorino | Portfolio</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #070b14;
+            --card: #111827;
+            --card2: #172033;
+            --primary: #3b82f6;
+            --secondary: #7c3aed;
+            --accent: #06b6d4;
+            --text: #ffffff;
+            --muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        h1,
+        h2,
+        h3 {
+            line-height: 1.2;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 60px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .08);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+        }
+
+        /* NAV */
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(15px);
+            background: rgba(7, 11, 20, .7);
+            border-bottom: 1px solid rgba(255, 255, 255, .05);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.3rem;
+        }
+
+        .menu {
+            display: flex;
+            gap: 30px;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 100%;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(59, 130, 246, .4);
+        }
+
+        .profile-img img {
+            width: 100%;
+            display: block;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 50px;
+            background: rgba(59, 130, 246, .15);
+            color: #60a5fa;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 1.2rem;
+            max-width: 700px;
+        }
+
+        .hero-buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(255, 255, 255, .15);
+            color: white;
+        }
+
+        /* STATS */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .stat {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .stat h3 {
+            font-size: 2.5rem;
+        }
+
+        .stat p {
+            color: var(--muted);
+        }
+
+        /* ABOUT */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .about-box {
+            padding: 35px;
+        }
+
+        .about-box p {
+            color: var(--muted);
+            margin-top: 15px;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .skill {
+            background: #1e293b;
+            padding: 10px 15px;
+            border-radius: 50px;
+        }
+
+        /* PROJECTS */
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .project {
+            overflow: hidden;
+        }
+
+        .project-image {
+            height: 220px;
+            background: linear-gradient(135deg, #3b82f6, #7c3aed);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-content p {
+            color: var(--muted);
+            margin-top: 10px;
+        }
+
+        /* TIMELINE */
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--primary);
+        }
+
+        .timeline-item {
+            margin-left: 60px;
+            margin-bottom: 40px;
+            padding: 25px;
+        }
+
+        .timeline-item h3 {
+            margin-bottom: 10px;
+        }
+
+        .timeline-item p {
+            color: var(--muted);
+        }
+
+        /* CONTACT */
+
+        .contact {
+            text-align: center;
+        }
+
+        .contact p {
+            color: var(--muted);
+            max-width: 700px;
+            margin: auto;
+        }
+
+        footer {
+            padding: 40px;
+            text-align: center;
+            color: var(--muted);
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:900px) {
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media(max-width:600px) {
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="container nav-content">
+            <div class="logo">Juan Victorino</div>
+
+            <div class="menu">
+                <a href="#about">Sobre Mi</a>
+                <a href="#projects">Proyectos</a>
+                <a href="#timeline">Trayectoria</a>
+                <a href="#contact">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+
+        <div class="container">
+
+            <div class="hero-grid">
+
+                <div class="profile-img">
+                    <img src="juan-victorino.jpg" alt="Juan Victorino">
+                </div>
+
+                <div>
+
+                    <span class="badge">
+                        Software Developer • Product Builder • AI Enthusiast
+                    </span>
+
+                    <h1>
+                        Juan Victorino
+                    </h1>
+
+                    <p>
+                        Desarrollador de software enfocado en crear productos digitales,
+                        plataformas empresariales, sistemas ERP, aplicaciones móviles y
+                        soluciones basadas en Inteligencia Artificial.
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <a href="#projects" class="btn btn-primary">
+                            Ver Proyectos
+                        </a>
+
+                        <a href="#contact" class="btn btn-outline">
+                            Contactar
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section>
+
+        <div class="container">
+
+            <div class="stats">
+
+                <div class="card stat">
+                    <h3>4+</h3>
+                    <p>Productos Digitales</p>
+                </div>
+
+                <div class="card stat">
+                    <h3>100%</h3>
+                    <p>Desarrollo Propio</p>
+                </div>
+
+                <div class="card stat">
+                    <h3>AI</h3>
+                    <p>Automatización</p>
+                </div>
+
+                <div class="card stat">
+                    <h3>SaaS</h3>
+                    <p>Arquitecturas Modernas</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="about">
+
+        <div class="container">
+
+            <h2 class="section-title">
+                Sobre Mi
+            </h2>
+
+            <div class="about-grid">
+
+                <div class="card about-box">
+
+                    <h3>Perfil Profesional</h3>
+
+                    <p>
+                        Soy desarrollador de software especializado en la creación de
+                        soluciones empresariales, aplicaciones móviles, automatización de
+                        procesos e integración de inteligencia artificial.
+                    </p>
+
+                    <p>
+                        Me apasiona transformar ideas en productos digitales escalables
+                        que generen valor real para usuarios y organizaciones.
+                    </p>
+
+                </div>
+
+                <div class="card about-box">
+
+                    <h3>Tecnologías</h3>
+
+                    <div class="skills">
+
+                        <span class="skill">C#</span>
+                        <span class="skill">.NET</span>
+                        <span class="skill">Python</span>
+                        <span class="skill">HTML5</span>
+                        <span class="skill">CSS3</span>
+                        <span class="skill">JavaScript</span>
+                        <span class="skill">SQLite</span>
+                        <span class="skill">PostgreSQL</span>
+                        <span class="skill">Flutter</span>
+                        <span class="skill">AI Agents</span>
+                        <span class="skill">ERP</span>
+                        <span class="skill">SaaS</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="projects">
+
+        <div class="container">
+
+            <h2 class="section-title">
+                Proyectos Destacados
+            </h2>
+
+            <div class="projects">
+
+                <div class="card project">
+
+                    <div class="project-image">
+                        ZENDA ERP
+                    </div>
+
+                    <div class="project-content">
+
+                        <h3>Zenda ERP</h3>
+
+                        <p>
+                            Sistema ERP moderno para gestión empresarial,
+                            facturación, inventario, compras, ventas y reportes.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="card project">
+
+                    <div class="project-image">
+                        U-CAM
+                    </div>
+
+                    <div class="project-content">
+
+                        <h3>U-CAM</h3>
+
+                        <p>
+                            Aplicación que permite utilizar la cámara del iPhone
+                            como cámara profesional en PC mediante conexión USB.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="card project">
+
+                    <div class="project-image">
+                        FINANZAS
+                    </div>
+
+                    <div class="project-content">
+
+                        <h3>Finanzas Personales</h3>
+
+                        <p>
+                            Control de gastos, facturas, ahorros, metas financieras
+                            y análisis inteligente de hábitos de consumo.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="card project">
+
+                    <div class="project-image">
+                        AI
+                    </div>
+
+                    <div class="project-content">
+
+                        <h3>Agentes Inteligentes</h3>
+
+                        <p>
+                            Investigación y desarrollo de agentes de IA capaces
+                            de colaborar en la construcción de software.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="timeline">
+
+        <div class="container">
+
+            <h2 class="section-title">
+                Trayectoria
+            </h2>
+
+            <div class="timeline">
+
+                <div class="card timeline-item">
+                    <h3>Desarrollo de Soluciones Empresariales</h3>
+                    <p>
+                        Diseño y construcción de sistemas orientados a negocios y organizaciones.
+                    </p>
+                </div>
+
+                <div class="card timeline-item">
+                    <h3>Creación de Zenda ERP</h3>
+                    <p>
+                        Desarrollo de plataforma ERP moderna orientada a la gestión empresarial.
+                    </p>
+                </div>
+
+                <div class="card timeline-item">
+                    <h3>Aplicaciones Móviles</h3>
+                    <p>
+                        Desarrollo de aplicaciones enfocadas en productividad y finanzas.
+                    </p>
+                </div>
+
+                <div class="card timeline-item">
+                    <h3>Investigación en IA</h3>
+                    <p>
+                        Implementación de agentes inteligentes para automatización de procesos.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="contact">
+
+        <div class="container">
+
+            <div class="contact">
+
+                <h2 class="section-title">
+                    Contacto
+                </h2>
+
+                <p>
+                    ¿Tienes un proyecto, idea o colaboración?
+                    Estoy abierto a participar en iniciativas tecnológicas,
+                    productos SaaS y soluciones innovadoras.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <footer>
+        © 2026 Juan Victorino • Portfolio Profesional
+    </footer>
+
+</body>
+
+</html>
